@@ -3,7 +3,7 @@
 'use client';
 
 import { useState } from 'react';
-import { signUpApi } from '../../../api/authAPI';
+import { signUpApi } from '@/api/authAPI';
 
 interface SignUpProps {
     onToggleForm: () => void;

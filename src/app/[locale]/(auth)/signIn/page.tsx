@@ -1,9 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useAuth } from '../../../context/authContext';
+import { useAuth } from '@/context/authContext';
 import { signInApi } from '@/api/authAPI'
 import { useRouter } from 'next/navigation'; // Import useRouter
+import { useTranslations } from 'next-intl';
 
 interface SignInProps {
     onToggleForm: () => void;
@@ -14,8 +15,10 @@ const SignInComponent = ({ onToggleForm }: SignInProps) => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState<{ [key: string]: string }>({});
     const [isLoading, setIsLoading] = useState(false);
+
+    const t = useTranslations('SignIn');
     const { signIn } = useAuth();
-    const router = useRouter(); // Khởi tạo router
+    const router = useRouter();
 
     const validateForm = () => {
         const newErrors: { [key: string]: string } = {};
@@ -59,7 +62,7 @@ const SignInComponent = ({ onToggleForm }: SignInProps) => {
 
     return (
         <div className="w-full max-w-md md:max-w-lg rounded-xl bg-white p-8 shadow-2xl transition-transform duration-300 transform scale-105">
-            <h2 className="mb-8 text-center text-4xl font-extrabold text-gray-800">Sign In</h2>
+            <h2 className="mb-8 text-center text-4xl font-extrabold text-gray-800">{t('signin')}</h2>
             <form onSubmit={handleSignIn} className="space-y-6">
                 <div>
                     <label className="block text-base font-bold text-gray-700 mb-2">Username</label>
